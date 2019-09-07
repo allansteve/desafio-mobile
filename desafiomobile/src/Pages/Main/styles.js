@@ -1,41 +1,26 @@
 import styled from "styled-components/native";
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.View`
   flex: 1;
-  background-color: white;
+`;
+
+export const Title = styled.Text`
+  font-size: 20px;
+  color: #fff;
+  font-weight: bold;
+  align-self: center;
+  margin-top: 25px;
 `;
 
 export const List = styled.FlatList.attrs({
-  showVerticalScrollIndicator: false
-  //contentContainerStyle: { padding: 30 }
+  showVerticalScrollIndicator: false,
+  numColumns: 2
 })``;
-
-export const Titlebar = styled.View`
-  width: 100%;
-  margin-top: 50px;
-  padding-left: 80px;
-`;
-
-export const Name = styled.Text`
-  font-size: 20px;
-  color: #3c4560;
-  font-weight: bold;
-`;
 
 export const Subtitle = styled.Text`
   font-size: 20px;
   color: #3c4560;
   font-weight: 500;
-  margin-top: 10px;
-  margin-left: 25px;
+  text-align: center;
   text-transform: uppercase;
 `;
-
-export const ItemsLayout = styled.View`
-  flex-direction: row;
-  flex: 1;
-`;
-
-export const ColumnOne = styled.View``;
-
-export const ColumnTwo = styled.View``;

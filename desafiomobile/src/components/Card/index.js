@@ -19,14 +19,19 @@ export default function Card({ data }) {
       <Cover>
         <Image
           source={{
-            uri:
-              "https://polishop.vteximg.com.br/arquivos/ids/618462/mktplace-rotating_air_brush_diamond_brilliance-01-2.jpg?v=636869578537130000"
+            uri: data.Skus[0].Images[0].ImageUrl
           }}
         />
       </Cover>
       <Content>
-        <Title>Escova Rotating Air Brush Diamond</Title>
-        <PriceCaption>{formatPrice(449.9)}</PriceCaption>
+        <Title>
+          {data.Skus[0].Name.length >= 50
+            ? `${data.Skus[0].Name.substr(0, 50)}...`
+            : `${data.Skus[0].Name}`}
+        </Title>
+        <PriceCaption>
+          {formatPrice(data.Skus[0].Sellers[0].Price)}
+        </PriceCaption>
       </Content>
     </Container>
   );

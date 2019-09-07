@@ -2,17 +2,18 @@ import styled from "styled-components";
 
 export const Container = styled.View`
   background: #fff;
-  height: 200px;
-  width: 150px;
+
+  height: 260px;
+  width: 160px;
   border-radius: 14px;
-  margin: 18px;
+  margin: 14px;
   margin-top: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 `;
 
 export const Cover = styled.View`
   width: 100%;
-  height: 120px;
+  height: 140px;
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
   overflow: hidden;
@@ -27,7 +28,7 @@ export const Content = styled.View`
   padding-top: 10px;
   flex-direction: column;
   align-items: center;
-  height: 60px;
+  height: 100px;
 `;
 
 export const Title = styled.Text`
