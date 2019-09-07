@@ -8,41 +8,26 @@ import {
   Content,
   Image
 } from "./styles";
-
+import { formatPrice } from "../../util/format";
 import pepper from "../../assets/pepper.jpg";
 import apple from "../../assets/apple.jpg";
 import tomatoes from "../../assets/tomatoes.jpg";
 
-export default function Card() {
+export default function Card({ data }) {
   return (
-    <>
-      <Container>
-        <Cover>
-          <Image source={pepper} />
-        </Cover>
-        <Content>
-          <Title>Pepper</Title>
-          <PriceCaption>$ 2.99 each</PriceCaption>
-        </Content>
-      </Container>
-      <Container>
-        <Cover>
-          <Image source={apple} />
-        </Cover>
-        <Content>
-          <Title>apple</Title>
-          <PriceCaption>$ 2.99 each</PriceCaption>
-        </Content>
-      </Container>
-      <Container>
-        <Cover>
-          <Image source={tomatoes} />
-        </Cover>
-        <Content>
-          <Title>tomatoes</Title>
-          <PriceCaption>$ 2.99 each</PriceCaption>
-        </Content>
-      </Container>
-    </>
+    <Container>
+      <Cover>
+        <Image
+          source={{
+            uri:
+              "https://polishop.vteximg.com.br/arquivos/ids/618462/mktplace-rotating_air_brush_diamond_brilliance-01-2.jpg?v=636869578537130000"
+          }}
+        />
+      </Cover>
+      <Content>
+        <Title>Escova Rotating Air Brush Diamond</Title>
+        <PriceCaption>{formatPrice(449.9)}</PriceCaption>
+      </Content>
+    </Container>
   );
 }

@@ -1,31 +1,19 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   flex: 1;
   background-color: white;
 `;
+
+export const List = styled.FlatList.attrs({
+  showVerticalScrollIndicator: false
+  //contentContainerStyle: { padding: 30 }
+})``;
 
 export const Titlebar = styled.View`
   width: 100%;
   margin-top: 50px;
   padding-left: 80px;
-`;
-
-export const Avatar = styled.Image`
-  width: 44px;
-  height: 44px;
-  background: black;
-  border-radius: 22px;
-  margin-left: 20px;
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
-
-export const Title = styled.Text`
-  font-size: 20px;
-  font-weight: 500;
-  color: #b8bece;
 `;
 
 export const Name = styled.Text`

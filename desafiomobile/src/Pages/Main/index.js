@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Button, ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { Header, SearchBar } from "react-native-elements";
@@ -7,8 +7,10 @@ import {
   Subtitle,
   ItemsLayout,
   ColumnOne,
-  ColumnTwo
+  ColumnTwo,
+  List
 } from "./styles";
+
 import Card from "../../components/Card";
 
 function Main() {
@@ -25,7 +27,6 @@ function Main() {
       />
       <Container>
         <ScrollView>
-          <Subtitle>Produtos</Subtitle>
           <ItemsLayout>
             <ColumnOne>
               <Card />

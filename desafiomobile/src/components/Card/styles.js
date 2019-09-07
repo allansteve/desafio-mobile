@@ -32,7 +32,7 @@ export const Content = styled.View`
 
 export const Title = styled.Text`
   color: #3c4560;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 600;
 `;
 
