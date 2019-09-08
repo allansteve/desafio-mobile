@@ -3,7 +3,8 @@ import {
   View,
   ActivityIndicator,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Alert
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { Header } from "react-native-elements";
@@ -13,8 +14,12 @@ import {
   Title,
   List,
   HeaderRight,
-  HeaderLeft
+  HeaderLeft,
+  SearchView,
+  SearchTextInput
 } from "./styles";
+import api from "../../services/api";
+import StatusBar from "../../components/Header";
 import Card from "../../components/Card";
 const baseUrl = "https://desafio.mobfiq.com.br/";
 const pathUrl = "Search/Criteria";
@@ -45,8 +50,6 @@ function Search({ navigation }) {
   renderComponentRight = () => {
     return (
       <HeaderRight>
-        <Icon name="search" size={27} color="white" />
-
         <Icon name="shopping-cart" size={25} color="white" />
       </HeaderRight>
     );
@@ -56,10 +59,10 @@ function Search({ navigation }) {
       <HeaderLeft>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Main");
+            navigation.navigate("Category");
           }}
         >
-          <Icon name="home" size={27} color="white" />
+          <Icon name="list" size={27} color="white" />
         </TouchableOpacity>
       </HeaderLeft>
     );
@@ -87,8 +90,11 @@ function Search({ navigation }) {
       setProduct(repositories.Products);
     }
     loadProducts();
-    setLoading(false);
   };
+
+  useEffect(() => {
+    handlerSumit();
+  }, []);
 
   useEffect(() => {
     async function loadProducts() {
@@ -110,60 +116,33 @@ function Search({ navigation }) {
 
       setProduct([...product, ...repositories.Products]);
     }
-    if (queryInput !== "") {
-      loadProducts();
-      setLoading(false);
-    }
+    loadProducts();
+    setLoading(false);
   }, [loading]);
-
-  // useEffect(() => {
-  //   async function loadProducts() {
-  //     setOffset(offset + 10);
-  //     const response = await fetch(`${baseUrl}${pathUrl}`, {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json"
-  //       },
-  //       body: JSON.stringify({
-  //         Offset: offset,
-  //         Size: Size,
-  //         Query: queryInput
-  //       })
-  //     });
-
-  //     const repositories = await response.json();
-
-  //     setProduct([...product, ...repositories.Products]);
-  //   }
-  //   loadProducts();
-  //   setLoading(false);
-  // }, [loading]);
 
   return (
     <>
-      <Header
-        statusBarProps={{ barStyle: "light-content" }}
-        leftComponent={renderComponentLeft}
-        rightComponent={renderComponentRight}
-        centerComponent={renderComponentCenter}
-        containerStyle={{
-          backgroundColor: "black",
-          justifyContent: "space-around"
-        }}
+      <StatusBar
+        ComponentCenter={renderComponentCenter}
+        ComponentLeft={renderComponentLeft}
+        ComponentRight={renderComponentRight}
       />
 
       <Container>
-        <View>
-          <TextInput onChangeText={changeText} value={queryInput} />
+        <SearchView>
+          <SearchTextInput
+            placeholder="Pesquisar..."
+            onChangeText={changeText}
+            value={queryInput}
+          />
           <TouchableOpacity
             onPress={() => {
               handlerSumit();
             }}
           >
-            <Icon name="search" color="black" size={20} />
+            <Icon name="search" color="white" size={25} />
           </TouchableOpacity>
-        </View>
+        </SearchView>
         <List
           data={product}
           keyExtractor={(item, index) => index.toString()}

@@ -4,16 +4,28 @@ import {
   Container,
   Cover,
   Title,
-  PriceCaption,
+  PriceList,
+  Price,
+  BestInstallment,
   Content,
   Image
 } from "./styles";
 import { formatPrice } from "../../util/format";
-import pepper from "../../assets/pepper.jpg";
-import apple from "../../assets/apple.jpg";
-import tomatoes from "../../assets/tomatoes.jpg";
 
 export default function Card({ data }) {
+  verifyInstallment = item => {
+    let valListPrice = item.Skus[0].Sellers[0].ListPrice.toFixed(0);
+    if (valListPrice !== "0") {
+      return (
+        <BestInstallment>
+          {`${
+            item.Skus[0].Sellers[0].BestInstallment.Count
+          } x de ${item.Skus[0].Sellers[0].BestInstallment.Value.toFixed(2)}`}
+        </BestInstallment>
+      );
+    }
+  };
+
   return (
     <Container>
       <Cover>
@@ -24,14 +36,10 @@ export default function Card({ data }) {
         />
       </Cover>
       <Content>
-        <Title>
-          {data.Skus[0].Name.length >= 50
-            ? `${data.Skus[0].Name.substr(0, 50)}...`
-            : `${data.Skus[0].Name}`}
-        </Title>
-        <PriceCaption>
-          {formatPrice(data.Skus[0].Sellers[0].Price)}
-        </PriceCaption>
+        <Title>{data.Skus[0].Name}</Title>
+        <PriceList>{formatPrice(data.Skus[0].Sellers[0].ListPrice)}</PriceList>
+        <Price>{formatPrice(data.Skus[0].Sellers[0].Price)}</Price>
+        {verifyInstallment(data)}
       </Content>
     </Container>
   );
